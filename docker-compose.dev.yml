@@ -23,7 +23,7 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
-      - APP_LOG=stdrr
+      - LOG_CHANNEL=stdrr
       
       - APP_KEY=base64:m/psNCDbBA10PxoZK9zZBxrF3MiBTtM0Qq2qsBDTVpk=
 
