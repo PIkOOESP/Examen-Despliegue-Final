@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_examen
+    restart: always
+    environment:
+      POSTGRES_USER: user_pizza
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: laravel_pizza
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    container_name: "examen-despliegue"
+    restart: always
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+      - /var/www/html/node_modules
+    ports:
+      - "8080:80"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_LOG=stdrr
+      
+      - APP_KEY=base64:m/psNCDbBA10PxoZK9zZBxrF3MiBTtM0Qq2qsBDTVpk=
+
+      - DB_HOST=db
+      - DB_CONNECTION=pgsql
+      - DB_USERNAME=user_pizza
+      - DB_PASSWORD=1234
+      - DB_DATABASE=laravel_pizza
+      - DB_PORT=5432
